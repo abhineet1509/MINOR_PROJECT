@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import registerImage from "../assets/Loginimg.jpg";
-//import "./Register.css";
-
-
-
+import { AppContext } from "../context/AppContext.jsx";
+import { useContext } from "react";
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");  // Added state for confirm password
-
+  const [confirmPassword, setConfirmPassword] = useState("");  
+  const { backendUrl } = useContext(AppContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,16 +32,12 @@ const RegisterPage = () => {
     try {
       console.log("📤 Sending:", { name, email, password });
 
-<<<<<<< HEAD
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
-=======
-      const response = await fetch("${import.meta.env.VITE_BACKEND_URL}/api/auth/register", {
->>>>>>> 785319e4 (Update backend URL to deployed endpoint and use env variable)
+      const response = await fetch(backendUrl +'/api/auth/register', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),  
       });
-
+      
       const data = await response.json();
       console.log("📥 Server Response:", data);
 
@@ -52,7 +46,7 @@ const RegisterPage = () => {
         setName("");
         setEmail("");
         setPassword("");
-        setConfirmPassword("");  // Clear the confirm password field
+        setConfirmPassword("");  
       } else {
         toast.error(data.error || " Registration failed");
       }
