@@ -14,7 +14,11 @@ const port = process.env.PORT || 4000;
 // MongoDB connection
 connectDB();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://minor-project-1-8bxi.onrender.com'
+];
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
