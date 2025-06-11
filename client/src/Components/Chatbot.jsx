@@ -133,13 +133,13 @@ const Chatbot = () => {
               className="flex-1 border-none outline-none bg-transparent px-3 py-1 text-sm"
               disabled={isLoading}
             />
-            <div
+            <button
               onClick={handleSend}
               disabled={isLoading || !input.trim()}
               className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
               Send
-            </div>
+            </button>
           </div>
         </div>
       )}
